@@ -7,18 +7,17 @@
     <!-- ============================================================== -->
     <!-- Start Page Content -->
     <!-- ============================================================== -->
-    {{ $errors }}
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <form class="form-horizontal" action="{{ route('profile.update') }}">
-                  <input type="hidden" name="id" value="1">
+                <form class="form-horizontal" method="post" action="{{ route('profile.update.personal') }}">
+                  @csrf
                     <div class="card-body">
                         <h4 class="card-title">Update Personal Info</h4>
                         <div class="form-group row">
                             <label for="fname" class="col-sm-3 text-right control-label col-form-label">Name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="fname" name="name" placeholder="Name Here">
+                                <input type="text" class="form-control" id="fname" name="name" value="{{ old('name', $user->name ?? '')}}" placeholder="Name Here">
                                 @if ( $errors->has('name') )
                                 <span>
                                   {{ $errors->name }}
@@ -37,14 +36,14 @@
         </div>
         <div class="col-md-6">
             <div class="card">
-                <form class="form-horizontal" action="{{ route('profile.update') }}">
-                    <input type="hidden" name="id" value="1">
+                <form class="form-horizontal" method="post" action="{{ route('profile.update.email') }}">
+                    @csrf
                     <div class="card-body">
                         <h4 class="card-title">Update Contact Info</h4>
                         <div class="form-group row">
                             <label for="email" class="col-sm-3 text-right control-label col-form-label">Email</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="email" name="email" placeholder="Email Here">
+                                <input type="text" class="form-control" id="email" name="email" value="{{ old('email', $user->email ?? '')}}" placeholder="Email Here">
                                 @if ( $errors->has('email') )
                                 <span>
                                   {{ $errors->first('email') }}
@@ -63,8 +62,8 @@
         </div>
         <div class="col-md-6">
             <div class="card">
-                <form class="form-horizontal"  action="{{ route('profile.update') }}">
-                  <input type="hidden" name="id" value="1">
+                <form class="form-horizontal" method="post" action="{{ route('profile.update.password') }}">
+                    @csrf
                     <div class="card-body">
                         <h4 class="card-title">Update Password</h4>
                         <div class="form-group row">
